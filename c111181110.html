@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賽車手遊介紹網站</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin: 0 0.5em;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #666;
+        }
+
+        .main-content {
+            display: flex;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .game-card {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .game-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* 新增的樣式 */
+        #ratingChartContainer {
+            width: 100%;
+            max-width: 150px; /* 控制圖表寬度 */
+            margin: 0 auto;
+        }
+
+        /* 新增的樣式 */
+        .main-content section {
+            display: none;
+        }
+
+        /* 新增的樣式 */
+        .main-content section:first-child {
+            display: block;
+
+            .main-content section {
+            display: none;
+            opacity: 0; /* 初始時透明度為 0 */
+            transform: translateY(20px); /* 初始時下移 20px */
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* 添加過渡效果 */
+        }
+
+        .main-content section:first-child {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        } 
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>賽車手遊介紹網站</h1>
+        <nav>
+            <a href="#" onclick="showContent('welcome')">歡迎</a>
+            <a href="#" onclick="showContent('game-summary')">遊戲類型簡介</a>
+            <a href="#" onclick="showContent('game-features')">遊戲特色</a>
+            <a href="#" onclick="showContent('game-screenshots')">遊戲截圖</a>
+            <a href="#" onclick="showContent('game-rating')">評價和評論</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <section id="welcome" class="game-card">
+            <h2>歡迎來到賽車手遊類介紹網站</h2>
+            <p>請點擊上面的選單來瀏覽更多內容。</p>
+        </section>
+
+        <!-- 遊戲簡介 -->
+        <section class="game-card" id="game-summary">
+            <h2>遊戲類型簡介</h2>
+            <p>當今手機遊戲市場上，賽車類型手遊一直以其刺激的競速體驗和逼真的賽車模擬而受到廣泛喜愛。透過高品質的畫面和流暢的操作，玩家可以感受到極速飆車的刺激快感，並挑戰各種賽道和對手。賽車手遊通常提供豐富的車輛選擇、多樣的賽道設計，以及多人即時對戰的模式，讓玩家能夠展現他們的駕駛技巧，同時與全球玩家一較高下。無論是單人挑戰還是多人對戰，賽車手遊都能帶給玩家極具挑戰性和娛樂性的遊戲體驗。</p>
+        </section>
+
+        <!-- 遊戲特色 -->
+        <section class="game-card" id="game-features">
+        <h2 style="text-align: center;">遊戲特色</h2>
+            <ul>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">定制你的賽車：</strong></span> 製作屬於自己風格的賽車！你可以隨心所欲地調整顏色、外觀套件，打造獨一無二的行車吉祥物。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">即時對戰全球玩家：</strong></span> 隨時隨地挑戰全球頂尖賽車手！透過網路連線，感受真實對戰的刺激快感。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">探索多樣賽道：</strong></span> 從城市街道到雪域山脈，賽車場地應有盡有。每一條賽道都是一場全新的挑戰。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">真實駕馭體驗：</strong></span> 借助最先進的物理引擎，感受真實的駕馭快感。加速、轉彎、剎車，一切都處在你的掌握中。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">沉浸式故事模式：</strong></span> 不僅僅是賽車，還有引人入勝的故事情節。通過完成任務，揭開賽車世界的冒險故事。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">天氣變化影響比賽：</strong></span> 挑戰不同天氣狀況，從陽光普照到雨中漂流，每場比賽都有新的挑戰等著你。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">多樣操控方式：</strong></span> 觸控、陀螺儀、搖桿，隨你喜好。找到最適合你的操控方式，享受順暢的遊戲體驗。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">支援虛擬現實（VR）：</strong></span> 戴上VR設備，彷彿置身賽道中。感受身歷其境的視覺和聽覺震撼。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">每日/每週活動挑戰：</strong></span> 參與精彩活動，贏取獎勵，挑戰每日、每週不同的賽事，不斷突破極限。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">全球排名競技：</strong></span> 爭奪全球排名榜首！與全球頂尖賽車手一較高下，成為賽道的巔峰之王。</li>
+                <li><span class="highlight"><strong style="font-size: 1.2em;">社交互動：</strong></span> 分享你的賽車技術、照片和影片，與其他熱愛賽車的玩家建立交流，共同感受速度的魅力。</li>
+            </ul>
+        </section>
+
+        <!-- 遊戲截圖 -->
+        <section class="game-card" id="game-screenshots">
+            <h2 style="text-align: center;">遊戲截圖</h2>
+            <img src="IMG/1228.jpg" alt="遊戲截圖1"  style="width: 100%; border-radius: 8px;" >
+            <img src="IMG/12281.jpg" alt="遊戲截圖2" style="width: 100%; border-radius: 8px;">
+            <img src="IMG/12282.png" alt="遊戲截圖3" style="width: 100%; border-radius: 8px;">
+            <img src="IMG/12283.jpg" alt="遊戲截圖4" style="width: 100%; border-radius: 8px;">
+        </section>
+
+        <!-- 評價和評論 -->
+        <section class="game-card" id="game-rating">
+            <h2>評價和評論</h2>
+            <p>你的評分：</p>
+            <form id="ratingForm">
+                <label for="rating">評分（1-5）：</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required>
+                <button type="button" onclick="submitRating()">提交評分</button>
+            </form>
+
+            <!-- 評分統計圖表 -->
+            <div id="ratingChartContainer">
+                <canvas id="ratingChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2023 賽車手遊介紹網站. All rights reserved.
+    </footer>
+
+    <script>
+        function showContent(contentId) {
+            // 隱藏所有區域
+            const sections = document.querySelectorAll('.game-card');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // 顯示選擇的區域
+            const selectedSection = document.getElementById(contentId);
+            selectedSection.style.display = 'block';
+        }
+
+        function submitRating() {
+            const ratingInput = document.getElementById('rating');
+            const ratingValue = ratingInput.value;
+
+            // 假設有後端服務處理評分
+            // 在這裡你可以將評分提交給伺服器，然後更新用戶評分區域
+
+            // 清空輸入框
+            ratingInput.value = '';
+
+            // 更新評分統計圖表
+            updateRatingChart();
+
+            // 更新用戶評分區域（模擬用）
+            const commentsList = document.getElementById('commentsList');
+            const newComment = document.createElement('li');
+            newComment.textContent = `⭐️ ${ratingValue}/5 - Great game!`;
+            commentsList.appendChild(newComment);
+        }
+
+        // 添加評分統計圖表
+        var ctx = document.getElementById('ratingChart').getContext('2d');
+        var ratingChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1星', '2星', '3星', '4星', '5星'],
+                datasets: [{
+                    label: '評分分佈',
+                    data: [0, 0, 0, 0, 0], // 初始值
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 205, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+
+        function updateRatingChart() {
+            // 更新評分統計圖表
+            const ratings = [1, 2, 3, 4, 5];
+            const data = ratingChart.data.datasets[0].data;
+
+            ratings.forEach((rating, index) => {
+                const count = document.querySelectorAll(`#commentsList li:contains("${rating}/5")`).length;
+                data[index] = count;
+            });
+
+            ratingChart.update();
+        }
+    </script>
+
+
+    
+</body>
+
+</html>
